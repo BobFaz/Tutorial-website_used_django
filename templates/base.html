@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BobFaz Tutorial</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">BobFaz tutorial.<hr></a></h1>
+    </header>
+    {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+    <p><a href="{% url 'logout' %}"> Log out</a></p>
+    {% else %}
+    <p>
+        <a href="{% url 'login' %}"> Log in<br></a>
+        <a href="{% url 'signup' %}"> Sign Up</a>
+    </p>
+    {% endif %}
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <footer>
+        <button><a href=" {% url 'post_new' %}">Add new course.</a></button>
+    </footer>
+
+</body>
+</html>
